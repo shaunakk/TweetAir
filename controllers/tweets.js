@@ -5,7 +5,7 @@ var twitterAPI = new Twit({
     access_token: '3303757363-DtlpCHcO8ZWMt1iCIloh0PGRUHtAQoMYH3dEXkM',
     access_token_secret: 'wQXF36NtjAlJ51rlxG0OCft8M1nVTVuMiuAhDngllplUA',
 })
-let tweets = "Begin";
+let tweets = [];
 let stream = twitterAPI.stream('statuses/filter', { track: 'air quality' })
 stream.on('tweet', function (tweet) {
     tweets.push(tweet);
