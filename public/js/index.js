@@ -1,6 +1,5 @@
 var map;
 let heatmap;
-
 async function formSubmit() {
     console.log("form submit called");
     let city = document.getElementById("input").value;
@@ -17,8 +16,8 @@ async function formSubmit() {
         title: res.results[0].formatted_address
     });
 
-    
-    
+
+
 }
 
 async function initMap() {
@@ -27,7 +26,7 @@ async function initMap() {
     result = await result.json();
     result = result.results;
     result = result.filter(val => {
-        if(val.Stats == null) {
+        if (val.Stats == null) {
             return false;
         }
         const stats = JSON.parse(val.Stats);
@@ -44,15 +43,15 @@ async function initMap() {
 
 
 
-    
+
     const sanFrancisco = new google.maps.LatLng(37.774546, -122.433523);
-    
+
     map = new google.maps.Map(document.getElementById('map'), {
         center: sanFrancisco,
         zoom: 5,
         mapTypeId: 'satellite'
     });
-    
+
     heatmap = new google.maps.visualization.HeatmapLayer({
         data: heatmapData
     });

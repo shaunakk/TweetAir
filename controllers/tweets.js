@@ -1,4 +1,6 @@
 const Twit = require("twit");
+var Sentiment = require('sentiment');
+var sentiment = new Sentiment();
 var twitterAPI = new Twit({
     consumer_key: 'iQugbu76pBPEeVUqOQjHUXJAu',
     consumer_secret: 'eIK68pub00TLLnGx6GqNL1SL1G89tNNK6FuH6lCCB4uylHq5pP',
@@ -8,7 +10,10 @@ var twitterAPI = new Twit({
 let tweets = [];
 let stream = twitterAPI.stream('statuses/filter', { track: 'air quality' })
 stream.on('tweet', function (tweet) {
+    tweet.sentiment=sentiment.analyze(tweet.text);
+    console.log(JSON.stringify(tweet))
     tweets.push(tweet);
+
 })
 exports.getTweets = async () => {
     const res = await twitterAPI.get('search/tweets', { q: '#tweetair', count: 5 });
