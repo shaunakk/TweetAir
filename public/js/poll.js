@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    setInterval(poll, 250);
+    setInterval(poll, 100);
 });
 async function poll() {
     let res = await fetch(window.location.href + 'refreshTweets');
@@ -12,17 +12,23 @@ async function poll() {
         });
         let elem = document.createElement('blockquote')
         let a = document.createElement('a');
-        let sentimentAnalysis = document.createTextNode(JSON.stringify(value.sentiment));
+        let sentimentAnalysis = value.sentiment;
+        if(sentimentAnalysis.comparative > 0) {
+            sentimentAnalysis = document.createTextNode("Good");
+        } else {
+            sentimentAnalysis = document.createTextNode("Bad");
+        }
 
         document.getElementById('tweets').insertBefore(sentimentAnalysis, document.getElementById('tweets').childNodes[0])
-        elem.className = 'twitter-tweet';
-        if (!value.retweeted_status.user) {
-            a.href = `https://twitter.com/${value.user.screen_name}/status/${value.id_str}`;
+        elem.className = 'twitter-tweet';   
+        let retweeted = value.retweeted_status;
+        try {
+            a.href = `https://twitter.com/${value.retweeted_status.user.screen_name}/status/${value.retweeted_status.id_str}`;
             console.log(a.href);
             elem.appendChild(a);
             document.getElementById('tweets').insertBefore(elem, document.getElementById('tweets').childNodes[0])
-        } else {
-            a.href = `https://twitter.com/${value.retweeted_status.user.screen_name}/status/${value.retweeted_status.id_str}`;
+        } catch(e) {
+            a.href = `https://twitter.com/${value.user.screen_name}/status/${value.id_str}`;
             console.log(a.href);
             elem.appendChild(a);
             document.getElementById('tweets').insertBefore(elem, document.getElementById('tweets').childNodes[0])

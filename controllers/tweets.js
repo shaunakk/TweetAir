@@ -8,7 +8,7 @@ var twitterAPI = new Twit({
     access_token_secret: 'wQXF36NtjAlJ51rlxG0OCft8M1nVTVuMiuAhDngllplUA',
 })
 let tweets = [];
-let stream = twitterAPI.stream('statuses/filter', { track: 'air quality' })
+let stream = twitterAPI.stream('statuses/filter', { track: 'air quality california' })
 stream.on('tweet', function (tweet) {
     tweet.sentiment=sentiment.analyze(tweet.text);
     console.log(JSON.stringify(tweet))
