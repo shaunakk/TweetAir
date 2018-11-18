@@ -7,7 +7,7 @@ var twitterAPI = new Twit({
     access_token_secret: 'wQXF36NtjAlJ51rlxG0OCft8M1nVTVuMiuAhDngllplUA',
 })
 let tweets = "Begin";
-let stream = twitterAPI.stream('statuses/filter', { track: '#tweetair' })
+let stream = twitterAPI.stream('statuses/filter', { track: 'air quality' })
 stream.on('tweet', function (tweet) {
     tweets += tweet.text;
 })
@@ -20,5 +20,5 @@ exports.getTweets = async () => {
 }
 exports.live = () => {
     console.log("Tweets = " + tweets);
-    return tweets
+    return tweets;
 }
