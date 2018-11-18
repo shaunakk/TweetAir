@@ -6,10 +6,10 @@ var twitterAPI = new Twit({
     access_token: '3303757363-DtlpCHcO8ZWMt1iCIloh0PGRUHtAQoMYH3dEXkM',
     access_token_secret: 'wQXF36NtjAlJ51rlxG0OCft8M1nVTVuMiuAhDngllplUA',
 })
-let tweets = "Begin";
+let tweets = [];
 let stream = twitterAPI.stream('statuses/filter', { track: '#tweetair' })
 stream.on('tweet', function (tweet) {
-    tweets += tweet.text;
+    tweets.push(tweet);
 })
 exports.getTweets = async () => {
     const res = await twitterAPI.get('search/tweets', { q: '#tweetair', count: 5 });

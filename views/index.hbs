@@ -1,3 +1,61 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{tweets}}</p>
-<script src="js/poll.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TweetAir</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <style>
+        #content {
+            width: 30%;
+            height: 100%;
+            float: left;
+            text-align: center;
+        }
+        #map {
+            display: block;
+            width: 70%;
+            height: 100%;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .subtitle {
+            font-weight: 300;
+        }
+        .small {
+            font-size: 16px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div id="titles">
+                <h1 class="title">TweetAir</h1>
+                <h3 class="subtitle">TweetAir is an all-in-one air quality web app.</h3>
+                <h3 class="subtitle small">Check the air quality in your city by entering your zip code.</h3>        
+        </div>
+        <div id="city"> 
+            <form onsubmit="formSubmit()">
+                    <input placeholder="Zip code">
+                    <button>Check</button>        
+            </form>
+        </div>
+
+    </div>
+    <div id="map"></div>
+    <script src="js/poll.js"></script>
+    <script src="js/index.js"></script>
+    <script type="text/javascript" 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCovkCyzPKHPiF1mhEUki4-kwDanFmPY7c&libraries=visualization&callback=initMap">
+    </script>
+
+</body>
+</html>
