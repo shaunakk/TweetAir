@@ -6,11 +6,10 @@ var twitterAPI = new Twit({
     access_token: '3303757363-DtlpCHcO8ZWMt1iCIloh0PGRUHtAQoMYH3dEXkM',
     access_token_secret: 'wQXF36NtjAlJ51rlxG0OCft8M1nVTVuMiuAhDngllplUA',
 })
-let tweets = "";
+let tweets = "Begin";
 let stream = twitterAPI.stream('statuses/filter', { track: '#tweetair' })
 stream.on('tweet', function (tweet) {
-    console.log(tweet);
-    tweets += tweet;
+    tweets += tweet.text;
 })
 exports.getTweets = async () => {
     const res = await twitterAPI.get('search/tweets', { q: '#tweetair', count: 5 });
@@ -19,6 +18,7 @@ exports.getTweets = async () => {
         return value.text;
     });
 }
-exports.getTweets.live() = () => {
+exports.live = () => {
+    console.log("Tweets = " + tweets);
     return tweets
 }
