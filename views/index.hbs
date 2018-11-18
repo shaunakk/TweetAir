@@ -45,25 +45,22 @@
             <h1 class="title">TweetAir</h1>
             <h3 class="subtitle">TweetAir is an all-in-one air quality web app.</h3>
             <h3 class="subtitle small">Check the air quality in your city by entering your zip code.</h3>
-            <blockquote class="twitter-tweet">
-                <a href="https://twitter.com/shaunak_kale/status/1064077855200407552"></a>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </blockquote>
+            <div id="tweets"></div>
+
         </div>
         <div id="city">
-            <form onsubmit="formSubmit()" id="form">
-                <input placeholder="Zip code" id="input">
-                <button>Check</button>
-            </form>
+            <input placeholder="Zip code" id="input">
+            <button onclick="formSubmit()">Check</button>
         </div>
 
     </div>
     <div id="map"></div>
-    {{!-- <script src="js/poll.js"></script> --}}
+    <script src="js/poll.js"></script>
     <script src="js/index.js"></script>
     <script type="text/javascript" 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCovkCyzPKHPiF1mhEUki4-kwDanFmPY7c&libraries=visualization&callback=initMap" async defer>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbeNz1g3SRPbcboyQ75mOndodTgqwKab8&libraries=visualization&callback=initMap" async defer>
     </script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 </body>
 

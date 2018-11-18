@@ -1,8 +1,23 @@
 var map;
+let heatmap;
 
-function formSubmit() {
+async function formSubmit() {
+    console.log("form submit called");
     let city = document.getElementById("input").value;
-    heatmap.set('center', new google.maps.LatLng());
+    let res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyBbeNz1g3SRPbcboyQ75mOndodTgqwKab8`);
+    res = await res.json();
+    console.log(res);
+    console.log(res.results[0].geometry.location.lat);
+    console.log(res.results[0].geometry.location.lng);
+    let location = new google.maps.LatLng(res.results[0].geometry.location.lat, res.results[0].geometry.location.lng);
+    map.setCenter(location);
+    var marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        title: res.results[0].formatted_address
+    });
+
+    
     
 }
 
@@ -11,7 +26,6 @@ async function initMap() {
     let result = await fetch('https://www.purpleair.com/json');
     result = await result.json();
     result = result.results;
-    console.log(result[0]);
     result = result.filter(val => {
         if(val.Stats == null) {
             return false;
@@ -26,7 +40,6 @@ async function initMap() {
         }
         return val;
     });
-    console.log(heatmapData);
 
 
 
@@ -40,7 +53,7 @@ async function initMap() {
         mapTypeId: 'satellite'
     });
     
-    const heatmap = new google.maps.visualization.HeatmapLayer({
+    heatmap = new google.maps.visualization.HeatmapLayer({
         data: heatmapData
     });
     heatmap.set('radius', 30)

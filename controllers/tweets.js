@@ -15,9 +15,11 @@ exports.getTweets = async () => {
     console.log(res.data);
     return res.data.statuses.map((value, index) => {
         return value.text;
+        
     });
 }
 exports.live = () => {
-    console.log("Tweets = " + tweets);
-    return tweets;
+    let tempTweets = tweets;
+    tweets = [];
+    return tempTweets;
 }
