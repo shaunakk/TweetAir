@@ -5,7 +5,7 @@ async function poll() {
         if(typeof(value.coordinates) == Object) {
             const lat = value.coordinates.coordinates[0];
             const long = value.coordinates.coordinates[1];
-            
+                
 
         }
     });
