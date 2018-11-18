@@ -16,9 +16,15 @@ async function initMap() {
     result = await result.json();
     result = result.results;
     console.log(result[0]);
-    for(let sensor in result) {
-        heatmapData.push(new google.maps.LatLng(result[sensor].Lat, result[sensor].Lon))
-    }
+    result.filter(val => val.Stats.v > 10)
+    result.map(val => {
+        for (let i = 0; i < Math.round(JSON.parse(val.Stats).v); i++) {
+            heatmapData.push(new google.maps.LatLng(val.Lat, val.Lon))
+
+        }
+        return val;
+    });
+
 
 
 
@@ -32,7 +38,7 @@ async function initMap() {
     });
     
     const heatmap = new google.maps.visualization.HeatmapLayer({
-    data: heatmapData
+        data: heatmapData
     });
     heatmap.setMap(map);
 }
