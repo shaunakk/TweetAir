@@ -1,0 +1,3 @@
+exports.getTweets = () => {
+    return "hello";
+}
