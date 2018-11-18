@@ -51,22 +51,18 @@
             </blockquote>
         </div>
         <div id="city">
-            <form onsubmit="formSubmit()">
-                <input placeholder="Zip code">
+            <form onsubmit="formSubmit()" id="form">
+                <input placeholder="Zip code" id="input">
                 <button>Check</button>
             </form>
         </div>
 
     </div>
     <div id="map"></div>
-    <script src="js/poll.js"></script>
+    {{!-- <script src="js/poll.js"></script> --}}
     <script src="js/index.js"></script>
-<<<<<<< HEAD
     <script type="text/javascript" 
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCovkCyzPKHPiF1mhEUki4-kwDanFmPY7c&libraries=visualization&callback=initMap" async defer>
-=======
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAtQPTrkhhozK02MvTdel-YVxUA6_H2Jo&libraries=visualization&callback=initMap">
->>>>>>> cb03017650c81c8fc00f14735632567bfb03f4f3
     </script>
 
 </body>

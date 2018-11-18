@@ -1,12 +1,8 @@
 var map;
 
 function formSubmit() {
-    city = 
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: city,
-        zoom: 13,
-        mapTypeId: 'satellite'
-    });
+    let city = document.getElementById("input").value;
+    heatmap.set('center', new google.maps.LatLng());
     
 }
 
@@ -16,14 +12,21 @@ async function initMap() {
     result = await result.json();
     result = result.results;
     console.log(result[0]);
-    result.filter(val => val.Stats.v > 10)
+    result = result.filter(val => {
+        if(val.Stats == null) {
+            return false;
+        }
+        const stats = JSON.parse(val.Stats);
+        return stats.v > 10;
+    })
     result.map(val => {
+        let counter = 0;
         for (let i = 0; i < Math.round(JSON.parse(val.Stats).v); i++) {
             heatmapData.push(new google.maps.LatLng(val.Lat, val.Lon))
-
         }
         return val;
     });
+    console.log(heatmapData);
 
 
 
@@ -33,14 +36,17 @@ async function initMap() {
     
     map = new google.maps.Map(document.getElementById('map'), {
         center: sanFrancisco,
-        zoom: 13,
+        zoom: 5,
         mapTypeId: 'satellite'
     });
     
     const heatmap = new google.maps.visualization.HeatmapLayer({
         data: heatmapData
     });
+    heatmap.set('radius', 30)
     heatmap.setMap(map);
 }
+
+
 
 /* Data points defined as an array of LatLng objects */
