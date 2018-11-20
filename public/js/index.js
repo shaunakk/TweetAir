@@ -3,7 +3,7 @@ let heatmap;
 async function formSubmit() {
     console.log("form submit called");
     let city = document.getElementById("input").value;
-    let res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyD9gbk35QQqf4_Pklk8VQ5eTkQTpvffS6E`);
+    let res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyDAtQPTrkhhozK02MvTdel-YVxUA6_H2Jo`);
     res = await res.json();
     console.log(res);
     console.log(res.results[0].geometry.location.lat);
